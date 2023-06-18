@@ -1,7 +1,3 @@
-// Aluno: Pedro Victor Silva Rocha
-// Professor: Fábio Timbó
-// Microcontrolador: teclado com senha
-
 #define COL1   pin_b3 //
 #define COL2   pin_b2
 #define COL3   pin_b1
@@ -14,9 +10,9 @@
 #include <18F4550.h>
 
 #byte trisb=0xf93
-#byte port_b = 0xF81 //Endereço da porta b
+#byte port_b = 0xF81 //EndereÃ§o da porta b
 
-#fuses HS, NOWDT, PUT, BROWNOUT, NOLVP, CPUDIV1,PLL5, WDT128 //Configuração dos fusíveis
+#fuses HS, NOWDT, PUT, BROWNOUT, NOLVP, CPUDIV1,PLL5, WDT128 //ConfiguraÃ§Ã£o dos fusÃ­veis
 #use delay(clock=20000000)
 #use rs232(baud=9600, xmit = PIN_C6, rcv = PIN_C7,bits=8, timeout=500 ,stop=1, ERRORS, stream = PORTC)
 #use rs232(baud=9600, xmit = PIN_C0, rcv = PIN_C1,bits=8, stop=1, ERRORS, stream = PORTB)
@@ -24,7 +20,7 @@
 unsigned int32 n=0;
 
 const int32 tm=3036;//ajuste tempo de varredura das teclas
-const float t_repete=40;//ajuste tempo de repetição das teclas
+const float t_repete=40;//ajuste tempo de repetiÃ§Ã£o das teclas
 
 
    unsigned int TestPassword [] = {0, 0, 0, 0, 0, 0 , 0, 0};
@@ -120,7 +116,7 @@ void main(){
  set_tris_d(0b00000000);
  set_tris_b(0b11111111);
  port_b_pullups(true);
- trisb=0xf0;//pinos b7 ao b4 entrada e pinos b3 ao b0 são saídas
+ trisb=0xf0;//pinos b7 ao b4 entrada e pinos b3 ao b0 sÃ£o saÃ­das
  enable_interrupts(GLOBAL);
  enable_interrupts(INT_timer1); 
  enable_interrupts (int_rda);
