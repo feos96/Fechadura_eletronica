@@ -1,0 +1,1633 @@
+CCS PCH C Compiler, Version 5.007, 61971               18-jun-23 11:04
+
+               Filename:   C:\Users\Fco Erick\OneDrive\Área de Trabalho\locker\locker.lst
+
+               ROM used:   2820 bytes (9%)
+                           Largest free fragment is 29944
+               RAM used:   78 (4%) at main() level
+                           87 (4%) worst case
+               Stack used: 1 locations (0 in main + 1 for interrupts)
+               Stack size: 31
+
+*
+0000:  GOTO   0686
+*
+0008:  MOVWF  04
+000A:  MOVFF  FD8,05
+000E:  MOVFF  FE0,06
+0012:  MOVLB  0
+0014:  MOVFF  FE9,0C
+0018:  MOVFF  FEA,07
+001C:  MOVFF  FE1,08
+0020:  MOVFF  FE2,09
+0024:  MOVFF  FD9,0A
+0028:  MOVFF  FDA,0B
+002C:  MOVFF  FF3,12
+0030:  MOVFF  FF4,13
+0034:  MOVFF  FFA,14
+0038:  MOVFF  00,0E
+003C:  MOVFF  01,0F
+0040:  MOVFF  02,10
+0044:  MOVFF  03,11
+0048:  BTFSS  F9D.0
+004A:  GOTO   0054
+004E:  BTFSC  F9E.0
+0050:  GOTO   0124
+0054:  BTFSS  F9D.5
+0056:  GOTO   0060
+005A:  BTFSC  F9E.5
+005C:  GOTO   0102
+0060:  MOVFF  0E,00
+0064:  MOVFF  0F,01
+0068:  MOVFF  10,02
+006C:  MOVFF  11,03
+0070:  MOVFF  0C,FE9
+0074:  MOVFF  07,FEA
+0078:  BSF    07.7
+007A:  MOVFF  08,FE1
+007E:  MOVFF  09,FE2
+0082:  MOVFF  0A,FD9
+0086:  MOVFF  0B,FDA
+008A:  MOVFF  12,FF3
+008E:  MOVFF  13,FF4
+0092:  MOVFF  14,FFA
+0096:  MOVF   04,W
+0098:  MOVFF  06,FE0
+009C:  MOVFF  05,FD8
+00A0:  RETFIE 0
+.................... // Aluno: Pedro Victor Silva Rocha 
+.................... // Professor: Fábio Timbó 
+.................... // Microcontrolador: teclado com senha 
+....................  
+.................... #define COL1   pin_b3 // 
+.................... #define COL2   pin_b2 
+.................... #define COL3   pin_b1 
+.................... #define COL4   pin_b0 
+.................... //Linhas 
+.................... #define LIN1   pin_b7 
+.................... #define LIN2   pin_b6 
+.................... #define LIN3   pin_b5 
+.................... #define LIN4   pin_b4 
+.................... #include <18F4550.h> 
+.................... //////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... #device PIC18F4550 
+*
+00E2:  TBLRD*+
+00E4:  MOVF   FF5,F
+00E6:  BZ    0100
+00E8:  MOVFF  FF6,53
+00EC:  MOVFF  FF7,54
+00F0:  MOVFF  FF5,55
+00F4:  RCALL  00A2
+00F6:  MOVFF  53,FF6
+00FA:  MOVFF  54,FF7
+00FE:  BRA    00E2
+0100:  RETURN 0
+*
+0116:  DATA 0A,20
+0118:  DATA 69,6E
+011A:  DATA 74,65
+011C:  DATA 72,72
+011E:  DATA 75,70
+0120:  DATA 74,65
+0122:  DATA 64,00
+*
+032C:  DATA 49,54
+032E:  DATA 53,20
+0330:  DATA 41,4C
+0332:  DATA 49,49
+0334:  DATA 49,49
+0336:  DATA 56,45
+0338:  DATA 0A,00
+033A:  DATA 0A,50
+033C:  DATA 61,73
+033E:  DATA 73,77
+0340:  DATA 6F,72
+0342:  DATA 64,20
+0344:  DATA 54,65
+0346:  DATA 73,74
+0348:  DATA 3A,20
+034A:  DATA 25,63
+034C:  DATA 25,63
+034E:  DATA 20,25
+0350:  DATA 63,25
+0352:  DATA 63,20
+0354:  DATA 25,63
+0356:  DATA 25,63
+0358:  DATA 20,25
+035A:  DATA 63,25
+035C:  DATA 63,20
+035E:  DATA 25,63
+0360:  DATA 25,63
+0362:  DATA 20,25
+0364:  DATA 63,25
+0366:  DATA 63,0A
+0368:  DATA 00,00
+036A:  DATA 0A,4F
+036C:  DATA 72,69
+036E:  DATA 67,69
+0370:  DATA 6E,61
+0372:  DATA 6C,20
+0374:  DATA 54,65
+0376:  DATA 73,74
+0378:  DATA 3A,20
+037A:  DATA 25,63
+037C:  DATA 25,63
+037E:  DATA 20,25
+0380:  DATA 63,25
+0382:  DATA 63,20
+0384:  DATA 25,63
+0386:  DATA 25,63
+0388:  DATA 20,25
+038A:  DATA 63,25
+038C:  DATA 63,20
+038E:  DATA 25,63
+0390:  DATA 25,63
+0392:  DATA 20,25
+0394:  DATA 63,25
+0396:  DATA 63,0A
+0398:  DATA 00,00
+039A:  DATA 0A,20
+039C:  DATA 50,72
+039E:  DATA 65,73
+03A0:  DATA 73,65
+03A2:  DATA 64,00
+*
+0528:  MOVFF  FF2,0D
+052C:  BCF    FF2.7
+052E:  ADDWF  FE8,W
+0530:  CLRF   FF7
+0532:  RLCF   FF7,F
+0534:  ADDLW  4D
+0536:  MOVWF  FF6
+0538:  MOVLW  05
+053A:  ADDWFC FF7,F
+053C:  TBLRD*-
+053E:  MOVF   FF5,W
+0540:  MOVWF  FFA
+0542:  TBLRD*
+0544:  MOVF   FF5,W
+0546:  BTFSC  0D.7
+0548:  BSF    FF2.7
+054A:  MOVWF  FF9
+054C:  DATA FE,04
+054E:  DATA 20,05
+0550:  DATA 20,05
+0552:  DATA 20,05
+0554:  DATA 20,05
+0556:  DATA 20,05
+0558:  DATA 20,05
+055A:  DATA 02,05
+055C:  DATA 20,05
+055E:  DATA 20,05
+0560:  DATA 20,05
+0562:  DATA 20,05
+0564:  DATA 20,05
+0566:  DATA F8,04
+0568:  DATA B0,04
+056A:  DATA B8,04
+056C:  DATA C0,04
+056E:  DATA C8,04
+0570:  DATA D0,04
+0572:  DATA D8,04
+0574:  DATA E0,04
+0576:  DATA E8,04
+0578:  DATA F0,04
+057A:  DATA 20,05
+057C:  DATA 20,05
+057E:  DATA 20,05
+0580:  DATA 20,05
+0582:  DATA 20,05
+0584:  DATA 20,05
+0586:  DATA 20,05
+0588:  DATA 08,05
+*
+05E0:  TBLRD*+
+05E2:  MOVFF  FF6,4E
+05E6:  MOVFF  FF7,4F
+05EA:  CLRF   16
+05EC:  BTFSC  FF2.7
+05EE:  BSF    16.7
+05F0:  BCF    FF2.7
+05F2:  MOVFF  FF5,55
+05F6:  RCALL  00A2
+05F8:  BTFSC  16.7
+05FA:  BSF    FF2.7
+05FC:  MOVFF  4E,FF6
+0600:  MOVFF  4F,FF7
+0604:  DECFSZ 4D,F
+0606:  BRA    05E0
+0608:  RETURN 0
+....................  
+.................... #list 
+....................  
+....................  
+.................... #byte trisb=0xf93 
+.................... #byte port_b = 0xF81 //Endereço da porta b 
+....................  
+.................... #fuses HS, NOWDT, PUT, BROWNOUT, NOLVP, CPUDIV1,PLL5, WDT128 //Configuração dos fusíveis 
+.................... #use delay(clock=20000000) 
+*
+03A4:  CLRF   FEA
+03A6:  MOVLW  52
+03A8:  MOVWF  FE9
+03AA:  MOVF   FEF,W
+03AC:  BZ    03C8
+03AE:  MOVLW  06
+03B0:  MOVWF  01
+03B2:  CLRF   00
+03B4:  DECFSZ 00,F
+03B6:  BRA    03B4
+03B8:  DECFSZ 01,F
+03BA:  BRA    03B2
+03BC:  MOVLW  7B
+03BE:  MOVWF  00
+03C0:  DECFSZ 00,F
+03C2:  BRA    03C0
+03C4:  DECFSZ FEF,F
+03C6:  BRA    03AE
+03C8:  RETURN 0
+*
+058A:  MOVLW  03
+058C:  SUBWF  50,F
+058E:  BNC   05A2
+0590:  CLRF   FEA
+0592:  MOVLW  50
+0594:  MOVWF  FE9
+0596:  MOVF   FEF,W
+0598:  BZ    05A2
+059A:  BRA    059E
+059C:  BRA    059E
+059E:  DECFSZ FEF,F
+05A0:  BRA    059C
+05A2:  GOTO   05B8 (RETURN)
+.................... #use rs232(baud=9600, xmit = PIN_C6, rcv = PIN_C7,bits=8, timeout=500 ,stop=1, ERRORS, stream = PORTC) 
+05A6:  MOVLW  06
+05A8:  MOVWF  4E
+05AA:  MOVLW  40
+05AC:  MOVWF  4D
+05AE:  MOVLW  02
+05B0:  MOVWF  4F
+05B2:  MOVLW  9B
+05B4:  MOVWF  50
+05B6:  BRA    058A
+05B8:  DECFSZ 4F,F
+05BA:  BRA    05B2
+05BC:  DECFSZ 4D,F
+05BE:  BRA    05CA
+05C0:  DECFSZ 4E,F
+05C2:  BRA    05CA
+05C4:  CLRF   17
+05C6:  CLRF   01
+05C8:  BRA    05DE
+05CA:  BTFSS  F9E.5
+05CC:  BRA    05AE
+05CE:  MOVF   FAB,W
+05D0:  MOVWF  17
+05D2:  MOVF   FAE,W
+05D4:  MOVWF  01
+05D6:  BTFSS  17.1
+05D8:  BRA    05DE
+05DA:  BCF    FAB.4
+05DC:  BSF    FAB.4
+05DE:  RETURN 0
+.................... #use rs232(baud=9600, xmit = PIN_C0, rcv = PIN_C1,bits=8, stop=1, ERRORS, stream = PORTB) 
+*
+00A2:  BCF    F94.0
+00A4:  BCF    F8B.0
+00A6:  MOVLW  08
+00A8:  MOVWF  01
+00AA:  BRA    00AC
+00AC:  NOP   
+00AE:  BSF    01.7
+00B0:  BRA    00CE
+00B2:  BCF    01.7
+00B4:  RRCF   55,F
+00B6:  BTFSC  FD8.0
+00B8:  BSF    F8B.0
+00BA:  BTFSS  FD8.0
+00BC:  BCF    F8B.0
+00BE:  BSF    01.6
+00C0:  BRA    00CE
+00C2:  BCF    01.6
+00C4:  DECFSZ 01,F
+00C6:  BRA    00B4
+00C8:  BRA    00CA
+00CA:  NOP   
+00CC:  BSF    F8B.0
+00CE:  MOVLW  A7
+00D0:  MOVWF  FE9
+00D2:  DECFSZ FE9,F
+00D4:  BRA    00D2
+00D6:  BRA    00D8
+00D8:  BTFSC  01.7
+00DA:  BRA    00B2
+00DC:  BTFSC  01.6
+00DE:  BRA    00C2
+00E0:  RETURN 0
+....................  
+.................... unsigned int32 n=0; 
+....................  
+.................... const int32 tm=3036;//ajuste tempo de varredura das teclas 
+.................... const float t_repete=40;//ajuste tempo de repetição das teclas 
+....................  
+....................  
+....................    unsigned int TestPassword [] = {0, 0, 0, 0, 0, 0 , 0, 0}; 
+....................    static unsigned int password []     = {1, 2, 3, 4, 5, 6 , 7, 8}; 
+....................    unsigned int TestPasswordPosition = 0; 
+....................    char TestRFId[] = {' ', ' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '}; 
+....................    char RFId[]   = {' ', ' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '}; 
+....................    boolean UpdateRFID = false; 
+....................     
+....................     
+....................    boolean Unlocked = false; 
+....................    boolean NewRFID = false; 
+....................    char Pressed_button = ' '; 
+....................  
+....................  
+.................... #INT_RDA 
+.................... void SerialInterrupt(){ 
+....................    NewRFID = true; 
+*
+0102:  BSF    47.2
+....................    fprintf(PORTB, "\n interrupted"); 
+0104:  MOVLW  16
+0106:  MOVWF  FF6
+0108:  MOVLW  01
+010A:  MOVWF  FF7
+010C:  RCALL  00E2
+....................    disable_interrupts (int_rda); 
+010E:  BCF    F9D.5
+.................... } 
+....................  
+0110:  BCF    F9E.5
+0112:  GOTO   0060
+.................... #int_timer1 
+.................... void funcao_tempo() 
+.................... { 
+....................    static signed int32 n; 
+....................    set_timer1(tm+get_timer1()); 
+*
+0124:  MOVF   FCE,W
+0126:  MOVFF  FCF,03
+012A:  ADDLW  DC
+012C:  MOVWF  53
+012E:  MOVLW  0B
+0130:  ADDWFC FCF,W
+0132:  CLRF   55
+0134:  BCF    FD8.2
+0136:  BTFSC  FD8.0
+0138:  INCF   55,F
+013A:  MOVWF  FCF
+013C:  MOVFF  53,FCE
+....................    n++; 
+0140:  MOVLW  01
+0142:  ADDWF  49,F
+0144:  BTFSC  FD8.0
+0146:  INCF   4A,F
+0148:  BTFSC  FD8.2
+014A:  INCF   4B,F
+014C:  BTFSC  FD8.2
+014E:  INCF   4C,F
+....................  
+....................  
+....................    if (n>4) n = 0; 
+0150:  BTFSC  4C.7
+0152:  BRA    016E
+0154:  MOVF   4C,F
+0156:  BNZ   0166
+0158:  MOVF   4B,F
+015A:  BNZ   0166
+015C:  MOVF   4A,F
+015E:  BNZ   0166
+0160:  MOVF   49,W
+0162:  SUBLW  04
+0164:  BC    016E
+0166:  CLRF   4C
+0168:  CLRF   4B
+016A:  CLRF   4A
+016C:  CLRF   49
+....................  
+....................    switch(n){ 
+016E:  MOVFF  49,00
+0172:  MOVF   4A,W
+0174:  MOVWF  03
+0176:  BNZ   017E
+0178:  MOVLW  01
+017A:  SUBWF  00,W
+017C:  BZ    01A0
+017E:  MOVF   03,W
+0180:  BNZ   0188
+0182:  MOVLW  02
+0184:  SUBWF  00,W
+0186:  BZ    0202
+0188:  MOVF   03,W
+018A:  BNZ   0192
+018C:  MOVLW  03
+018E:  SUBWF  00,W
+0190:  BZ    0264
+0192:  MOVF   03,W
+0194:  BNZ   019E
+0196:  MOVLW  04
+0198:  SUBWF  00,W
+019A:  BTFSC  FD8.2
+019C:  BRA    02C6
+019E:  BRA    0326
+....................    case 1: 
+....................    output_low(COL1);  
+01A0:  BCF    F93.3
+01A2:  BCF    F8A.3
+....................    output_high(COL2);  
+01A4:  BCF    F93.2
+01A6:  BSF    F8A.2
+....................    output_high(COL3);  
+01A8:  BCF    F93.1
+01AA:  BSF    F8A.1
+....................    output_high(COL4);  
+01AC:  BCF    F93.0
+01AE:  BSF    F8A.0
+....................  
+....................    if (!input(LIN1)) {Pressed_button = '1';;n=-1*(t_repete);} 
+01B0:  BSF    F93.7
+01B2:  BTFSC  F81.7
+01B4:  BRA    01C4
+01B6:  MOVLW  31
+01B8:  MOVWF  48
+01BA:  SETF   4C
+01BC:  SETF   4B
+01BE:  SETF   4A
+01C0:  MOVLW  D8
+01C2:  MOVWF  49
+....................    if (!input(LIN2)) {Pressed_button = '4';n=-1*(t_repete);} 
+01C4:  BSF    F93.6
+01C6:  BTFSC  F81.6
+01C8:  BRA    01D8
+01CA:  MOVLW  34
+01CC:  MOVWF  48
+01CE:  SETF   4C
+01D0:  SETF   4B
+01D2:  SETF   4A
+01D4:  MOVLW  D8
+01D6:  MOVWF  49
+....................    if (!input(LIN3)) {Pressed_button = '7';n=-1*(t_repete);} 
+01D8:  BSF    F93.5
+01DA:  BTFSC  F81.5
+01DC:  BRA    01EC
+01DE:  MOVLW  37
+01E0:  MOVWF  48
+01E2:  SETF   4C
+01E4:  SETF   4B
+01E6:  SETF   4A
+01E8:  MOVLW  D8
+01EA:  MOVWF  49
+....................    if (!input(LIN4)) {Pressed_button = '*';n=-1*(t_repete);} 
+01EC:  BSF    F93.4
+01EE:  BTFSC  F81.4
+01F0:  BRA    0200
+01F2:  MOVLW  2A
+01F4:  MOVWF  48
+01F6:  SETF   4C
+01F8:  SETF   4B
+01FA:  SETF   4A
+01FC:  MOVLW  D8
+01FE:  MOVWF  49
+....................    break; 
+0200:  BRA    0326
+....................  
+....................    case 2: 
+....................    output_high(COL1);  
+0202:  BCF    F93.3
+0204:  BSF    F8A.3
+....................    output_low(COL2);  
+0206:  BCF    F93.2
+0208:  BCF    F8A.2
+....................    output_high(COL3);  
+020A:  BCF    F93.1
+020C:  BSF    F8A.1
+....................    output_high(COL4);  
+020E:  BCF    F93.0
+0210:  BSF    F8A.0
+....................  
+....................    if (!input(LIN1)) {Pressed_button = '2';n=-1*(t_repete);} 
+0212:  BSF    F93.7
+0214:  BTFSC  F81.7
+0216:  BRA    0226
+0218:  MOVLW  32
+021A:  MOVWF  48
+021C:  SETF   4C
+021E:  SETF   4B
+0220:  SETF   4A
+0222:  MOVLW  D8
+0224:  MOVWF  49
+....................    if (!input(LIN2)) {Pressed_button = '5';n=-1*(t_repete);} 
+0226:  BSF    F93.6
+0228:  BTFSC  F81.6
+022A:  BRA    023A
+022C:  MOVLW  35
+022E:  MOVWF  48
+0230:  SETF   4C
+0232:  SETF   4B
+0234:  SETF   4A
+0236:  MOVLW  D8
+0238:  MOVWF  49
+....................    if (!input(LIN3)) {Pressed_button = '8';n=-1*(t_repete);} 
+023A:  BSF    F93.5
+023C:  BTFSC  F81.5
+023E:  BRA    024E
+0240:  MOVLW  38
+0242:  MOVWF  48
+0244:  SETF   4C
+0246:  SETF   4B
+0248:  SETF   4A
+024A:  MOVLW  D8
+024C:  MOVWF  49
+....................    if (!input(LIN4)) {Pressed_button = '0';n=-1*(t_repete);} 
+024E:  BSF    F93.4
+0250:  BTFSC  F81.4
+0252:  BRA    0262
+0254:  MOVLW  30
+0256:  MOVWF  48
+0258:  SETF   4C
+025A:  SETF   4B
+025C:  SETF   4A
+025E:  MOVLW  D8
+0260:  MOVWF  49
+....................    break; 
+0262:  BRA    0326
+....................  
+....................    case 3: 
+....................    output_high(COL1);  
+0264:  BCF    F93.3
+0266:  BSF    F8A.3
+....................    output_high(COL2);  
+0268:  BCF    F93.2
+026A:  BSF    F8A.2
+....................    output_low(COL3);  
+026C:  BCF    F93.1
+026E:  BCF    F8A.1
+....................    output_high(COL4);  
+0270:  BCF    F93.0
+0272:  BSF    F8A.0
+....................  
+....................    if (!input(LIN1)) {Pressed_button = '3';n=-1*(t_repete);} 
+0274:  BSF    F93.7
+0276:  BTFSC  F81.7
+0278:  BRA    0288
+027A:  MOVLW  33
+027C:  MOVWF  48
+027E:  SETF   4C
+0280:  SETF   4B
+0282:  SETF   4A
+0284:  MOVLW  D8
+0286:  MOVWF  49
+....................    if (!input(LIN2)) {Pressed_button = '6';n=-1*(t_repete);} 
+0288:  BSF    F93.6
+028A:  BTFSC  F81.6
+028C:  BRA    029C
+028E:  MOVLW  36
+0290:  MOVWF  48
+0292:  SETF   4C
+0294:  SETF   4B
+0296:  SETF   4A
+0298:  MOVLW  D8
+029A:  MOVWF  49
+....................    if (!input(LIN3)) {Pressed_button = '9';n=-1*(t_repete);} 
+029C:  BSF    F93.5
+029E:  BTFSC  F81.5
+02A0:  BRA    02B0
+02A2:  MOVLW  39
+02A4:  MOVWF  48
+02A6:  SETF   4C
+02A8:  SETF   4B
+02AA:  SETF   4A
+02AC:  MOVLW  D8
+02AE:  MOVWF  49
+....................    if (!input(LIN4)) {Pressed_button = '#';n=-1*(t_repete);} 
+02B0:  BSF    F93.4
+02B2:  BTFSC  F81.4
+02B4:  BRA    02C4
+02B6:  MOVLW  23
+02B8:  MOVWF  48
+02BA:  SETF   4C
+02BC:  SETF   4B
+02BE:  SETF   4A
+02C0:  MOVLW  D8
+02C2:  MOVWF  49
+....................    break; 
+02C4:  BRA    0326
+....................  
+....................    case 4: 
+....................    output_high(COL1);  
+02C6:  BCF    F93.3
+02C8:  BSF    F8A.3
+....................    output_high(COL2);  
+02CA:  BCF    F93.2
+02CC:  BSF    F8A.2
+....................    output_high(COL3);  
+02CE:  BCF    F93.1
+02D0:  BSF    F8A.1
+....................    output_low(COL4);  
+02D2:  BCF    F93.0
+02D4:  BCF    F8A.0
+....................  
+....................    if (!input(LIN1)) {Pressed_button = 'A';n=-1*(t_repete);} 
+02D6:  BSF    F93.7
+02D8:  BTFSC  F81.7
+02DA:  BRA    02EA
+02DC:  MOVLW  41
+02DE:  MOVWF  48
+02E0:  SETF   4C
+02E2:  SETF   4B
+02E4:  SETF   4A
+02E6:  MOVLW  D8
+02E8:  MOVWF  49
+....................    if (!input(LIN2)) {Pressed_button = 'B';n=-1*(t_repete);} 
+02EA:  BSF    F93.6
+02EC:  BTFSC  F81.6
+02EE:  BRA    02FE
+02F0:  MOVLW  42
+02F2:  MOVWF  48
+02F4:  SETF   4C
+02F6:  SETF   4B
+02F8:  SETF   4A
+02FA:  MOVLW  D8
+02FC:  MOVWF  49
+....................    if (!input(LIN3)) {Pressed_button = 'C';n=-1*(t_repete);} 
+02FE:  BSF    F93.5
+0300:  BTFSC  F81.5
+0302:  BRA    0312
+0304:  MOVLW  43
+0306:  MOVWF  48
+0308:  SETF   4C
+030A:  SETF   4B
+030C:  SETF   4A
+030E:  MOVLW  D8
+0310:  MOVWF  49
+....................    if (!input(LIN4)) {Pressed_button = 'D';n=-1*(t_repete);} 
+0312:  BSF    F93.4
+0314:  BTFSC  F81.4
+0316:  BRA    0326
+0318:  MOVLW  44
+031A:  MOVWF  48
+031C:  SETF   4C
+031E:  SETF   4B
+0320:  SETF   4A
+0322:  MOVLW  D8
+0324:  MOVWF  49
+....................    break; 
+....................    } 
+....................     
+0326:  BCF    F9E.0
+0328:  GOTO   0060
+.................... } 
+....................  void compareRFID(); 
+....................  void keyboardAcq(); 
+....................  void Add_password_number(int num); 
+....................  boolean compare_passwords(); 
+....................  void erase_passwords(); 
+....................  void ReLock(); 
+....................  void siren(int numberofsirenblips); 
+....................   
+.................... void main(){ 
+*
+0686:  CLRF   FF8
+0688:  BCF    FD0.7
+068A:  BSF    07.7
+068C:  CLRF   17
+068E:  BSF    FB8.3
+0690:  MOVLW  08
+0692:  MOVWF  FAF
+0694:  MOVLW  02
+0696:  MOVWF  FB0
+0698:  MOVLW  A6
+069A:  MOVWF  FAC
+069C:  MOVLW  90
+069E:  MOVWF  FAB
+06A0:  BCF    F94.0
+06A2:  BSF    F8B.0
+06A4:  CLRF   1B
+06A6:  CLRF   1A
+06A8:  CLRF   19
+06AA:  CLRF   18
+06AC:  CLRF   2C
+06AE:  BCF    47.0
+06B0:  BCF    47.1
+06B2:  BCF    47.2
+06B4:  MOVLW  20
+06B6:  MOVWF  48
+06B8:  MOVF   FC1,W
+06BA:  ANDLW  C0
+06BC:  IORLW  0F
+06BE:  MOVWF  FC1
+06C0:  MOVLW  07
+06C2:  MOVWF  FB4
+06C4:  BRA    06E0
+06C6:  DATA 08,40
+06C8:  DATA 1C,00
+06CA:  DATA 08,80
+06CC:  DATA 01,02
+06CE:  DATA 03,04
+06D0:  DATA 05,06
+06D2:  DATA 07,08
+06D4:  DATA 1A,40
+06D6:  DATA 2D,20
+06D8:  DATA 04,00
+06DA:  DATA 49,00
+06DC:  DATA 00,00
+06DE:  DATA 00,00
+06E0:  MOVLW  00
+06E2:  MOVWF  FF8
+06E4:  MOVLW  06
+06E6:  MOVWF  FF7
+06E8:  MOVLW  C6
+06EA:  MOVWF  FF6
+06EC:  TBLRD*+
+06EE:  MOVF   FF5,W
+06F0:  MOVWF  00
+06F2:  XORLW  00
+06F4:  BZ    071C
+06F6:  TBLRD*+
+06F8:  MOVF   FF5,W
+06FA:  MOVWF  01
+06FC:  BTFSC  FE8.7
+06FE:  BRA    070A
+0700:  ANDLW  0F
+0702:  MOVWF  FEA
+0704:  TBLRD*+
+0706:  MOVFF  FF5,FE9
+070A:  BTFSC  01.6
+070C:  TBLRD*+
+070E:  BTFSS  01.6
+0710:  TBLRD*+
+0712:  MOVFF  FF5,FEE
+0716:  DCFSNZ 00,F
+0718:  BRA    06EC
+071A:  BRA    070E
+071C:  CLRF   FF8
+....................  set_tris_d(0b00000000); 
+071E:  MOVLW  00
+0720:  MOVWF  F95
+....................  set_tris_b(0b11111111); 
+0722:  MOVLW  FF
+0724:  MOVWF  F93
+....................  port_b_pullups(true); 
+0726:  BCF    FF1.7
+....................  trisb=0xf0;//pinos b7 ao b4 entrada e pinos b3 ao b0 são saídas 
+0728:  MOVLW  F0
+072A:  MOVWF  F93
+....................  enable_interrupts(GLOBAL); 
+072C:  MOVLW  C0
+072E:  IORWF  FF2,F
+....................  enable_interrupts(INT_timer1);  
+0730:  BSF    F9D.0
+....................  enable_interrupts (int_rda); 
+0732:  BSF    F9D.5
+....................  setup_timer_1(T1_INTERNAL|T1_DIV_BY_1); 
+0734:  MOVLW  85
+0736:  MOVWF  FCD
+....................  port_b_pullups(TRUE); 
+0738:  BCF    FF1.7
+....................   
+....................  output_high(pin_D1); //Locked 
+073A:  BCF    F95.1
+073C:  BSF    F8C.1
+....................  fprintf(PORTB, "ITS ALIIIIVE\n"); 
+073E:  MOVLW  2C
+0740:  MOVWF  FF6
+0742:  MOVLW  03
+0744:  MOVWF  FF7
+0746:  CLRF   16
+0748:  BTFSC  FF2.7
+074A:  BSF    16.7
+074C:  BCF    FF2.7
+074E:  RCALL  00E2
+0750:  BTFSC  16.7
+0752:  BSF    FF2.7
+....................  
+....................  
+....................  while(true) 
+....................  { 
+....................       keyboardAcq(); 
+0754:  BRA    04A2
+....................        
+....................       if(NewRFID) { 
+0756:  BTFSS  47.2
+0758:  BRA    081A
+....................             if(UpdateRFID == true) { 
+075A:  BTFSS  47.0
+075C:  BRA    07D2
+....................                siren(2); 
+075E:  MOVLW  02
+0760:  MOVWF  50
+0762:  RCALL  03CA
+....................                delay_ms(500); 
+0764:  MOVLW  02
+0766:  MOVWF  4D
+0768:  MOVLW  FA
+076A:  MOVWF  52
+076C:  RCALL  03A4
+076E:  DECFSZ 4D,F
+0770:  BRA    0768
+....................                RFId[0] = fgetc(PORTC); 
+0772:  RCALL  05A6
+0774:  MOVFF  01,3A
+....................                RFId[1] = fgetc(PORTC); 
+0778:  RCALL  05A6
+077A:  MOVFF  01,3B
+....................                RFId[2] = fgetc(PORTC); 
+077E:  RCALL  05A6
+0780:  MOVFF  01,3C
+....................                RFId[3] = fgetc(PORTC); 
+0784:  RCALL  05A6
+0786:  MOVFF  01,3D
+....................                RFId[4] = fgetc(PORTC); 
+078A:  RCALL  05A6
+078C:  MOVFF  01,3E
+....................                RFId[5] = fgetc(PORTC); 
+0790:  RCALL  05A6
+0792:  MOVFF  01,3F
+....................                RFId[6] = fgetc(PORTC); 
+0796:  RCALL  05A6
+0798:  MOVFF  01,40
+....................                RFId[7] = fgetc(PORTC); 
+079C:  RCALL  05A6
+079E:  MOVFF  01,41
+....................                RFId[8] = fgetc(PORTC); 
+07A2:  RCALL  05A6
+07A4:  MOVFF  01,42
+....................                RFId[9] = fgetc(PORTC); 
+07A8:  RCALL  05A6
+07AA:  MOVFF  01,43
+....................                RFId[10] = fgetc(PORTC); 
+07AE:  RCALL  05A6
+07B0:  MOVFF  01,44
+....................                RFId[11] = fgetc(PORTC);          
+07B4:  RCALL  05A6
+07B6:  MOVFF  01,45
+....................                UpdateRFID = false; 
+07BA:  BCF    47.0
+....................                siren(5); 
+07BC:  MOVLW  05
+07BE:  MOVWF  50
+07C0:  RCALL  03CA
+....................                delay_ms(1000); 
+07C2:  MOVLW  04
+07C4:  MOVWF  4D
+07C6:  MOVLW  FA
+07C8:  MOVWF  52
+07CA:  RCALL  03A4
+07CC:  DECFSZ 4D,F
+07CE:  BRA    07C6
+....................             }else{ 
+07D0:  BRA    081A
+....................                TestRFId[0] = fgetc(PORTC); 
+07D2:  RCALL  05A6
+07D4:  MOVFF  01,2D
+....................                TestRFId[1] = fgetc(PORTC); 
+07D8:  RCALL  05A6
+07DA:  MOVFF  01,2E
+....................                TestRFId[2] = fgetc(PORTC); 
+07DE:  RCALL  05A6
+07E0:  MOVFF  01,2F
+....................                TestRFId[3] = fgetc(PORTC); 
+07E4:  RCALL  05A6
+07E6:  MOVFF  01,30
+....................                TestRFId[4] = fgetc(PORTC); 
+07EA:  RCALL  05A6
+07EC:  MOVFF  01,31
+....................                TestRFId[5] = fgetc(PORTC); 
+07F0:  RCALL  05A6
+07F2:  MOVFF  01,32
+....................                TestRFId[6] = fgetc(PORTC); 
+07F6:  RCALL  05A6
+07F8:  MOVFF  01,33
+....................                TestRFId[7] = fgetc(PORTC); 
+07FC:  RCALL  05A6
+07FE:  MOVFF  01,34
+....................                TestRFId[8] = fgetc(PORTC); 
+0802:  RCALL  05A6
+0804:  MOVFF  01,35
+....................                TestRFId[9] = fgetc(PORTC); 
+0808:  RCALL  05A6
+080A:  MOVFF  01,36
+....................                TestRFId[10] = fgetc(PORTC); 
+080E:  RCALL  05A6
+0810:  MOVFF  01,37
+....................                TestRFId[11] = fgetc(PORTC); 
+0814:  RCALL  05A6
+0816:  MOVFF  01,38
+....................             }   
+....................           
+....................           
+....................          } 
+....................           
+....................          fprintf(PORTB, "\nPassword Test: %c%c %c%c %c%c %c%c %c%c %c%c\n", TestRFId[0], TestRFId[1], TestRFId[2], TestRFId[3], TestRFId[4], TestRFId[5], TestRFId[6], TestRFId[7], TestRFId[8], TestRFId[9], TestRFId[10], TestRFId[11]); 
+081A:  MOVLW  3A
+081C:  MOVWF  FF6
+081E:  MOVLW  03
+0820:  MOVWF  FF7
+0822:  MOVLW  10
+0824:  MOVWF  4D
+0826:  RCALL  05E0
+0828:  CLRF   16
+082A:  BTFSC  FF2.7
+082C:  BSF    16.7
+082E:  BCF    FF2.7
+0830:  MOVFF  2D,55
+0834:  RCALL  00A2
+0836:  BTFSC  16.7
+0838:  BSF    FF2.7
+083A:  CLRF   16
+083C:  BTFSC  FF2.7
+083E:  BSF    16.7
+0840:  BCF    FF2.7
+0842:  MOVFF  2E,55
+0846:  RCALL  00A2
+0848:  BTFSC  16.7
+084A:  BSF    FF2.7
+084C:  CLRF   16
+084E:  BTFSC  FF2.7
+0850:  BSF    16.7
+0852:  BCF    FF2.7
+0854:  MOVLW  20
+0856:  MOVWF  55
+0858:  RCALL  00A2
+085A:  BTFSC  16.7
+085C:  BSF    FF2.7
+085E:  CLRF   16
+0860:  BTFSC  FF2.7
+0862:  BSF    16.7
+0864:  BCF    FF2.7
+0866:  MOVFF  2F,55
+086A:  RCALL  00A2
+086C:  BTFSC  16.7
+086E:  BSF    FF2.7
+0870:  CLRF   16
+0872:  BTFSC  FF2.7
+0874:  BSF    16.7
+0876:  BCF    FF2.7
+0878:  MOVFF  30,55
+087C:  RCALL  00A2
+087E:  BTFSC  16.7
+0880:  BSF    FF2.7
+0882:  CLRF   16
+0884:  BTFSC  FF2.7
+0886:  BSF    16.7
+0888:  BCF    FF2.7
+088A:  MOVLW  20
+088C:  MOVWF  55
+088E:  RCALL  00A2
+0890:  BTFSC  16.7
+0892:  BSF    FF2.7
+0894:  CLRF   16
+0896:  BTFSC  FF2.7
+0898:  BSF    16.7
+089A:  BCF    FF2.7
+089C:  MOVFF  31,55
+08A0:  RCALL  00A2
+08A2:  BTFSC  16.7
+08A4:  BSF    FF2.7
+08A6:  CLRF   16
+08A8:  BTFSC  FF2.7
+08AA:  BSF    16.7
+08AC:  BCF    FF2.7
+08AE:  MOVFF  32,55
+08B2:  CALL   00A2
+08B6:  BTFSC  16.7
+08B8:  BSF    FF2.7
+08BA:  CLRF   16
+08BC:  BTFSC  FF2.7
+08BE:  BSF    16.7
+08C0:  BCF    FF2.7
+08C2:  MOVLW  20
+08C4:  MOVWF  55
+08C6:  CALL   00A2
+08CA:  BTFSC  16.7
+08CC:  BSF    FF2.7
+08CE:  CLRF   16
+08D0:  BTFSC  FF2.7
+08D2:  BSF    16.7
+08D4:  BCF    FF2.7
+08D6:  MOVFF  33,55
+08DA:  CALL   00A2
+08DE:  BTFSC  16.7
+08E0:  BSF    FF2.7
+08E2:  CLRF   16
+08E4:  BTFSC  FF2.7
+08E6:  BSF    16.7
+08E8:  BCF    FF2.7
+08EA:  MOVFF  34,55
+08EE:  CALL   00A2
+08F2:  BTFSC  16.7
+08F4:  BSF    FF2.7
+08F6:  CLRF   16
+08F8:  BTFSC  FF2.7
+08FA:  BSF    16.7
+08FC:  BCF    FF2.7
+08FE:  MOVLW  20
+0900:  MOVWF  55
+0902:  CALL   00A2
+0906:  BTFSC  16.7
+0908:  BSF    FF2.7
+090A:  CLRF   16
+090C:  BTFSC  FF2.7
+090E:  BSF    16.7
+0910:  BCF    FF2.7
+0912:  MOVFF  35,55
+0916:  CALL   00A2
+091A:  BTFSC  16.7
+091C:  BSF    FF2.7
+091E:  CLRF   16
+0920:  BTFSC  FF2.7
+0922:  BSF    16.7
+0924:  BCF    FF2.7
+0926:  MOVFF  36,55
+092A:  CALL   00A2
+092E:  BTFSC  16.7
+0930:  BSF    FF2.7
+0932:  CLRF   16
+0934:  BTFSC  FF2.7
+0936:  BSF    16.7
+0938:  BCF    FF2.7
+093A:  MOVLW  20
+093C:  MOVWF  55
+093E:  CALL   00A2
+0942:  BTFSC  16.7
+0944:  BSF    FF2.7
+0946:  CLRF   16
+0948:  BTFSC  FF2.7
+094A:  BSF    16.7
+094C:  BCF    FF2.7
+094E:  MOVFF  37,55
+0952:  CALL   00A2
+0956:  BTFSC  16.7
+0958:  BSF    FF2.7
+095A:  CLRF   16
+095C:  BTFSC  FF2.7
+095E:  BSF    16.7
+0960:  BCF    FF2.7
+0962:  MOVFF  38,55
+0966:  CALL   00A2
+096A:  BTFSC  16.7
+096C:  BSF    FF2.7
+096E:  CLRF   16
+0970:  BTFSC  FF2.7
+0972:  BSF    16.7
+0974:  BCF    FF2.7
+0976:  MOVLW  0A
+0978:  MOVWF  55
+097A:  CALL   00A2
+097E:  BTFSC  16.7
+0980:  BSF    FF2.7
+....................          fprintf(PORTB, "\nOriginal Test: %c%c %c%c %c%c %c%c %c%c %c%c\n", RFId[0], RFId[1], RFId[2], RFId[3], RFId[4], RFId[5], RFId[6], RFId[7], RFId[8], RFId[9], RFId[10], RFId[11]); 
+0982:  MOVLW  6A
+0984:  MOVWF  FF6
+0986:  MOVLW  03
+0988:  MOVWF  FF7
+098A:  MOVLW  10
+098C:  MOVWF  4D
+098E:  RCALL  05E0
+0990:  CLRF   16
+0992:  BTFSC  FF2.7
+0994:  BSF    16.7
+0996:  BCF    FF2.7
+0998:  MOVFF  3A,55
+099C:  CALL   00A2
+09A0:  BTFSC  16.7
+09A2:  BSF    FF2.7
+09A4:  CLRF   16
+09A6:  BTFSC  FF2.7
+09A8:  BSF    16.7
+09AA:  BCF    FF2.7
+09AC:  MOVFF  3B,55
+09B0:  CALL   00A2
+09B4:  BTFSC  16.7
+09B6:  BSF    FF2.7
+09B8:  CLRF   16
+09BA:  BTFSC  FF2.7
+09BC:  BSF    16.7
+09BE:  BCF    FF2.7
+09C0:  MOVLW  20
+09C2:  MOVWF  55
+09C4:  CALL   00A2
+09C8:  BTFSC  16.7
+09CA:  BSF    FF2.7
+09CC:  CLRF   16
+09CE:  BTFSC  FF2.7
+09D0:  BSF    16.7
+09D2:  BCF    FF2.7
+09D4:  MOVFF  3C,55
+09D8:  CALL   00A2
+09DC:  BTFSC  16.7
+09DE:  BSF    FF2.7
+09E0:  CLRF   16
+09E2:  BTFSC  FF2.7
+09E4:  BSF    16.7
+09E6:  BCF    FF2.7
+09E8:  MOVFF  3D,55
+09EC:  CALL   00A2
+09F0:  BTFSC  16.7
+09F2:  BSF    FF2.7
+09F4:  CLRF   16
+09F6:  BTFSC  FF2.7
+09F8:  BSF    16.7
+09FA:  BCF    FF2.7
+09FC:  MOVLW  20
+09FE:  MOVWF  55
+0A00:  CALL   00A2
+0A04:  BTFSC  16.7
+0A06:  BSF    FF2.7
+0A08:  CLRF   16
+0A0A:  BTFSC  FF2.7
+0A0C:  BSF    16.7
+0A0E:  BCF    FF2.7
+0A10:  MOVFF  3E,55
+0A14:  CALL   00A2
+0A18:  BTFSC  16.7
+0A1A:  BSF    FF2.7
+0A1C:  CLRF   16
+0A1E:  BTFSC  FF2.7
+0A20:  BSF    16.7
+0A22:  BCF    FF2.7
+0A24:  MOVFF  3F,55
+0A28:  CALL   00A2
+0A2C:  BTFSC  16.7
+0A2E:  BSF    FF2.7
+0A30:  CLRF   16
+0A32:  BTFSC  FF2.7
+0A34:  BSF    16.7
+0A36:  BCF    FF2.7
+0A38:  MOVLW  20
+0A3A:  MOVWF  55
+0A3C:  CALL   00A2
+0A40:  BTFSC  16.7
+0A42:  BSF    FF2.7
+0A44:  CLRF   16
+0A46:  BTFSC  FF2.7
+0A48:  BSF    16.7
+0A4A:  BCF    FF2.7
+0A4C:  MOVFF  40,55
+0A50:  CALL   00A2
+0A54:  BTFSC  16.7
+0A56:  BSF    FF2.7
+0A58:  CLRF   16
+0A5A:  BTFSC  FF2.7
+0A5C:  BSF    16.7
+0A5E:  BCF    FF2.7
+0A60:  MOVFF  41,55
+0A64:  CALL   00A2
+0A68:  BTFSC  16.7
+0A6A:  BSF    FF2.7
+0A6C:  CLRF   16
+0A6E:  BTFSC  FF2.7
+0A70:  BSF    16.7
+0A72:  BCF    FF2.7
+0A74:  MOVLW  20
+0A76:  MOVWF  55
+0A78:  CALL   00A2
+0A7C:  BTFSC  16.7
+0A7E:  BSF    FF2.7
+0A80:  CLRF   16
+0A82:  BTFSC  FF2.7
+0A84:  BSF    16.7
+0A86:  BCF    FF2.7
+0A88:  MOVFF  42,55
+0A8C:  CALL   00A2
+0A90:  BTFSC  16.7
+0A92:  BSF    FF2.7
+0A94:  CLRF   16
+0A96:  BTFSC  FF2.7
+0A98:  BSF    16.7
+0A9A:  BCF    FF2.7
+0A9C:  MOVFF  43,55
+0AA0:  CALL   00A2
+0AA4:  BTFSC  16.7
+0AA6:  BSF    FF2.7
+0AA8:  CLRF   16
+0AAA:  BTFSC  FF2.7
+0AAC:  BSF    16.7
+0AAE:  BCF    FF2.7
+0AB0:  MOVLW  20
+0AB2:  MOVWF  55
+0AB4:  CALL   00A2
+0AB8:  BTFSC  16.7
+0ABA:  BSF    FF2.7
+0ABC:  CLRF   16
+0ABE:  BTFSC  FF2.7
+0AC0:  BSF    16.7
+0AC2:  BCF    FF2.7
+0AC4:  MOVFF  44,55
+0AC8:  CALL   00A2
+0ACC:  BTFSC  16.7
+0ACE:  BSF    FF2.7
+0AD0:  CLRF   16
+0AD2:  BTFSC  FF2.7
+0AD4:  BSF    16.7
+0AD6:  BCF    FF2.7
+0AD8:  MOVFF  45,55
+0ADC:  CALL   00A2
+0AE0:  BTFSC  16.7
+0AE2:  BSF    FF2.7
+0AE4:  CLRF   16
+0AE6:  BTFSC  FF2.7
+0AE8:  BSF    16.7
+0AEA:  BCF    FF2.7
+0AEC:  MOVLW  0A
+0AEE:  MOVWF  55
+0AF0:  CALL   00A2
+0AF4:  BTFSC  16.7
+0AF6:  BSF    FF2.7
+....................          compareRFID(); 
+0AF8:  BRA    060A
+....................          delay_ms(250); 
+0AFA:  MOVLW  FA
+0AFC:  MOVWF  52
+0AFE:  RCALL  03A4
+....................          enable_interrupts (int_rda); 
+0B00:  BSF    F9D.5
+....................          NewRFID = false; 
+0B02:  BCF    47.2
+0B04:  BRA    0754
+....................           
+....................       } 
+....................        
+....................  
+....................       
+....................     
+....................  } 
+....................  void Add_password_number(int num){ 
+0B06:  SLEEP 
+....................          TestPassword[TestPasswordPosition] = num; 
+*
+03EC:  CLRF   03
+03EE:  MOVF   2C,W
+03F0:  ADDLW  1C
+03F2:  MOVWF  FE9
+03F4:  MOVLW  00
+03F6:  ADDWFC 03,W
+03F8:  MOVWF  FEA
+03FA:  MOVFF  4D,FEF
+....................          TestPasswordPosition ++; 
+03FE:  INCF   2C,F
+....................          if(TestPasswordPosition > 7) TestPasswordPosition = 0; 
+0400:  MOVF   2C,W
+0402:  SUBLW  07
+0404:  BC    0408
+0406:  CLRF   2C
+....................          siren(1); 
+0408:  MOVLW  01
+040A:  MOVWF  50
+040C:  RCALL  03CA
+040E:  RETURN 0
+....................           
+....................  } 
+....................  
+.................... boolean compare_passwords(){ 
+*
+0430:  BCF    4D.0
+....................  
+....................    boolean PasswordWrong = false; 
+....................  
+....................    for(int i = 0; i<8; i++){ 
+0432:  CLRF   4E
+0434:  MOVF   4E,W
+0436:  SUBLW  07
+0438:  BNC   0466
+....................       if (TestPassword[i] != password[i]){   
+043A:  CLRF   03
+043C:  MOVF   4E,W
+043E:  ADDLW  1C
+0440:  MOVWF  FE9
+0442:  MOVLW  00
+0444:  ADDWFC 03,W
+0446:  MOVWF  FEA
+0448:  MOVFF  FEF,4F
+044C:  CLRF   03
+044E:  MOVF   4E,W
+0450:  ADDLW  24
+0452:  MOVWF  FE9
+0454:  MOVLW  00
+0456:  ADDWFC 03,W
+0458:  MOVWF  FEA
+045A:  MOVF   FEF,W
+045C:  SUBWF  4F,W
+045E:  BZ    0462
+....................          PasswordWrong = true; 
+0460:  BSF    4D.0
+....................       } 
+0462:  INCF   4E,F
+0464:  BRA    0434
+....................    } 
+....................  
+....................    if(!PasswordWrong){ 
+0466:  BTFSC  4D.0
+0468:  BRA    047C
+....................       output_high(pin_D0); //Unlocked led 
+046A:  BCF    F95.0
+046C:  BSF    F8C.0
+....................       output_low(pin_D1);  //locked led 
+046E:  BCF    F95.1
+0470:  BCF    F8C.1
+....................       Unlocked = true; 
+0472:  BSF    47.1
+....................        
+....................       siren(2); 
+0474:  MOVLW  02
+0476:  MOVWF  50
+0478:  RCALL  03CA
+....................    }else{ 
+047A:  BRA    0482
+....................       siren(10); 
+047C:  MOVLW  0A
+047E:  MOVWF  50
+0480:  RCALL  03CA
+....................    } 
+....................     
+....................    erase_passwords(); 
+0482:  RCALL  0410
+....................    return Unlocked; 
+0484:  MOVLW  00
+0486:  BTFSC  47.1
+0488:  MOVLW  01
+048A:  MOVWF  01
+048C:  GOTO   0520 (RETURN)
+.................... } 
+....................  
+.................... void erase_passwords(){ 
+....................    for(int i = 0; i<8; i++) TestPassword[i] = 0;  
+*
+0410:  CLRF   4F
+0412:  MOVF   4F,W
+0414:  SUBLW  07
+0416:  BNC   042C
+0418:  CLRF   03
+041A:  MOVF   4F,W
+041C:  ADDLW  1C
+041E:  MOVWF  FE9
+0420:  MOVLW  00
+0422:  ADDWFC 03,W
+0424:  MOVWF  FEA
+0426:  CLRF   FEF
+0428:  INCF   4F,F
+042A:  BRA    0412
+....................    TestPasswordPosition = 0; 
+042C:  CLRF   2C
+042E:  RETURN 0
+.................... } 
+....................  
+.................... void ReLock(){ 
+....................    output_high(pin_D1); //locked led 
+*
+0490:  BCF    F95.1
+0492:  BSF    F8C.1
+....................    output_low(pin_D0);  //Unlocked led 
+0494:  BCF    F95.0
+0496:  BCF    F8C.0
+....................    Unlocked = false; 
+0498:  BCF    47.1
+....................    siren(1); 
+049A:  MOVLW  01
+049C:  MOVWF  50
+049E:  RCALL  03CA
+04A0:  RETURN 0
+.................... } 
+....................  
+.................... void siren(int numberofsirenblips){ 
+....................    for(int i = 0;i < numberofsirenblips; i++){ 
+*
+03CA:  CLRF   51
+03CC:  MOVF   50,W
+03CE:  SUBWF  51,W
+03D0:  BC    03EA
+....................       output_high(pin_D2); 
+03D2:  BCF    F95.2
+03D4:  BSF    F8C.2
+....................       delay_ms(125); 
+03D6:  MOVLW  7D
+03D8:  MOVWF  52
+03DA:  RCALL  03A4
+....................       output_low(pin_D2);    
+03DC:  BCF    F95.2
+03DE:  BCF    F8C.2
+....................       delay_ms(125); 
+03E0:  MOVLW  7D
+03E2:  MOVWF  52
+03E4:  RCALL  03A4
+03E6:  INCF   51,F
+03E8:  BRA    03CC
+....................    } 
+03EA:  RETURN 0
+.................... } 
+....................  
+....................  
+.................... void keyboardAcq(){ 
+....................    switch(Pressed_button){ 
+*
+04A2:  MOVLW  23
+04A4:  SUBWF  48,W
+04A6:  ADDLW  E1
+04A8:  BC    0520
+04AA:  ADDLW  1F
+04AC:  GOTO   0528
+....................       case '1': 
+....................          Add_password_number(1); 
+04B0:  MOVLW  01
+04B2:  MOVWF  4D
+04B4:  RCALL  03EC
+....................          break; 
+04B6:  BRA    0520
+....................       case '2': 
+....................          Add_password_number(2); 
+04B8:  MOVLW  02
+04BA:  MOVWF  4D
+04BC:  RCALL  03EC
+....................          break; 
+04BE:  BRA    0520
+....................       case '3': 
+....................          Add_password_number(3); 
+04C0:  MOVLW  03
+04C2:  MOVWF  4D
+04C4:  RCALL  03EC
+....................          break; 
+04C6:  BRA    0520
+....................       case '4': 
+....................          Add_password_number(4); 
+04C8:  MOVLW  04
+04CA:  MOVWF  4D
+04CC:  RCALL  03EC
+....................          break; 
+04CE:  BRA    0520
+....................       case '5': 
+....................          Add_password_number(5); 
+04D0:  MOVLW  05
+04D2:  MOVWF  4D
+04D4:  RCALL  03EC
+....................          break; 
+04D6:  BRA    0520
+....................       case '6': 
+....................          Add_password_number(6); 
+04D8:  MOVLW  06
+04DA:  MOVWF  4D
+04DC:  RCALL  03EC
+....................          break; 
+04DE:  BRA    0520
+....................       case '7': 
+....................          Add_password_number(7); 
+04E0:  MOVLW  07
+04E2:  MOVWF  4D
+04E4:  RCALL  03EC
+....................          break; 
+04E6:  BRA    0520
+....................       case '8': 
+....................          Add_password_number(8); 
+04E8:  MOVLW  08
+04EA:  MOVWF  4D
+04EC:  RCALL  03EC
+....................          break; 
+04EE:  BRA    0520
+....................       case '9': 
+....................          Add_password_number(9); 
+04F0:  MOVLW  09
+04F2:  MOVWF  4D
+04F4:  RCALL  03EC
+....................          break; 
+04F6:  BRA    0520
+....................       case '0': 
+....................          Add_password_number(0); 
+04F8:  CLRF   4D
+04FA:  RCALL  03EC
+....................          break; 
+04FC:  BRA    0520
+....................       case '#': 
+....................          compare_passwords(); 
+04FE:  BRA    0430
+....................          break; 
+0500:  BRA    0520
+....................       case '*': 
+....................          erase_passwords(); 
+0502:  RCALL  0410
+....................          ReLock(); 
+0504:  RCALL  0490
+....................          break; 
+0506:  BRA    0520
+....................       case 'A': 
+....................          UpdateRFID = true; 
+0508:  BSF    47.0
+....................          fprintf(PORTB, "\n Pressed"); 
+050A:  MOVLW  9A
+050C:  MOVWF  FF6
+050E:  MOVLW  03
+0510:  MOVWF  FF7
+0512:  CLRF   16
+0514:  BTFSC  FF2.7
+0516:  BSF    16.7
+0518:  BCF    FF2.7
+051A:  RCALL  00E2
+051C:  BTFSC  16.7
+051E:  BSF    FF2.7
+....................          break; 
+....................          } 
+....................       
+....................      Pressed_button = ' '; 
+0520:  MOVLW  20
+0522:  MOVWF  48
+0524:  GOTO   0756 (RETURN)
+.................... } 
+....................  
+.................... void compareRFID(){ 
+*
+060A:  BCF    4D.0
+....................  
+....................    boolean PasswordWrong = false; 
+....................  
+....................    for(int i = 4; i<10; i++){ 
+060C:  MOVLW  04
+060E:  MOVWF  4E
+0610:  MOVF   4E,W
+0612:  SUBLW  09
+0614:  BNC   0642
+....................       if (TestRFId[i] != RFId[i]){   
+0616:  CLRF   03
+0618:  MOVF   4E,W
+061A:  ADDLW  2D
+061C:  MOVWF  FE9
+061E:  MOVLW  00
+0620:  ADDWFC 03,W
+0622:  MOVWF  FEA
+0624:  MOVFF  FEF,50
+0628:  CLRF   03
+062A:  MOVF   4E,W
+062C:  ADDLW  3A
+062E:  MOVWF  FE9
+0630:  MOVLW  00
+0632:  ADDWFC 03,W
+0634:  MOVWF  FEA
+0636:  MOVF   FEF,W
+0638:  SUBWF  50,W
+063A:  BZ    063E
+....................          PasswordWrong = true; 
+063C:  BSF    4D.0
+....................       } 
+063E:  INCF   4E,F
+0640:  BRA    0610
+....................    } 
+....................  
+....................    if(!PasswordWrong){ 
+0642:  BTFSC  4D.0
+0644:  BRA    0666
+....................       output_high(pin_D0); //Unlocked led 
+0646:  BCF    F95.0
+0648:  BSF    F8C.0
+....................       output_low(pin_D1);  //locked led 
+064A:  BCF    F95.1
+064C:  BCF    F8C.1
+....................       Unlocked = true; 
+064E:  BSF    47.1
+....................       siren(2); 
+0650:  MOVLW  02
+0652:  MOVWF  50
+0654:  RCALL  03CA
+....................        
+....................       delay_ms(3000); 
+0656:  MOVLW  0C
+0658:  MOVWF  50
+065A:  MOVLW  FA
+065C:  MOVWF  52
+065E:  RCALL  03A4
+0660:  DECFSZ 50,F
+0662:  BRA    065A
+....................       ReLock(); 
+0664:  RCALL  0490
+....................    } 
+....................     
+....................    for(int j = 0; j<12; j++){ 
+0666:  CLRF   4F
+0668:  MOVF   4F,W
+066A:  SUBLW  0B
+066C:  BNC   0682
+....................       TestRFId[j] = 0; 
+066E:  CLRF   03
+0670:  MOVF   4F,W
+0672:  ADDLW  2D
+0674:  MOVWF  FE9
+0676:  MOVLW  00
+0678:  ADDWFC 03,W
+067A:  MOVWF  FEA
+067C:  CLRF   FEF
+067E:  INCF   4F,F
+0680:  BRA    0668
+....................    } 
+0682:  GOTO   0AFA (RETURN)
+....................  
+.................... } 
+....................  
+....................  
+
+Configuration Fuses:
+   Word  1: CC24   PLL5 CPUDIV1 USBDIV HS FCMEN IESO
+   Word  2: 0E3E   PUT BROWNOUT BORV21 VREGEN NOWDT WDT128
+   Word  3: 8700   CCP2C1 PBADEN LPT1OSC MCLR
+   Word  4: 00A1   STVREN NOLVP ICSP2 NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB

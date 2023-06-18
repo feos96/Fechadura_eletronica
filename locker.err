@@ -1,0 +1,5 @@
+>>> Warning 216 "locker.c" Line 314(1,2): Interrupts disabled during call to prevent re-entrancy:  (@PSTRINGC_641)
+>>> Warning 216 "locker.c" Line 314(1,2): Interrupts disabled during call to prevent re-entrancy:  (@PUTCHAR_2_)
+      Memory usage:   ROM=9%      RAM=4% - 4%
+      0 Errors,  2 Warnings.
+Build Successful.

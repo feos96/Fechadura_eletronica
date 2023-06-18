@@ -1,0 +1,145 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @INTERRUPT_AREA
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016     @INTERRUPT_AREA
+017     rs232_errors
+018-01B n
+01C-023 TestPassword
+024-02B password
+02C     TestPasswordPosition
+02D-039 TestRFId
+03A-046 RFId
+047.0   UpdateRFID
+047.1   Unlocked
+047.2   NewRFID
+048     Pressed_button
+049-04C funcao_tempo.n
+04D.0   compare_passwords.PasswordWrong
+04D     Add_password_number.num
+04D     @PSTRINGCN_641.P1
+04D.0   compareRFID.PasswordWrong
+04D     @GETCH_BIU_1.@SCRATCH1
+04D     MAIN.@SCRATCH1
+04E     compare_passwords.i
+04E     compareRFID.i
+04E     @GETCH_BIU_1.@SCRATCH2
+04E     @PSTRINGCN_641.@SCRATCH1
+04E     Add_password_number.@SCRATCH1
+04F     compareRFID.j
+04F     erase_passwords.i
+04F     @GETCH_BIU_1.@SCRATCH3
+04F     @PSTRINGCN_641.@SCRATCH2
+04F     Add_password_number.@SCRATCH2
+04F     compare_passwords.@SCRATCH1
+050     @delay_us1.P1
+050     siren.numberofsirenblips
+050     erase_passwords.@SCRATCH1
+050     compareRFID.@SCRATCH1
+051     siren.i
+051     erase_passwords.@SCRATCH2
+051     compareRFID.@SCRATCH2
+052     @delay_ms1.P1
+053     @PSTRINGC_641.@SCRATCH1
+053     funcao_tempo.@SCRATCH1
+054     @PSTRINGC_641.@SCRATCH2
+054     funcao_tempo.@SCRATCH2
+055     @PUTCHAR_2_.P1
+055     funcao_tempo.@SCRATCH3
+056     funcao_tempo.@SCRATCH4
+F81     port_b
+F83     PSP_DATA
+F93     trisb
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P3
+FE9-FEA @READ_PACKED_MEMORY.P4
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+0000A2  @PUTCHAR_2_
+0000E2  @PSTRINGC_641
+000102  SerialInterrupt
+000116  @const660.call
+000124  funcao_tempo
+00032C  @const676.call
+00033A  @const677.call
+00036A  @const680.call
+00039A  @const685.call
+0003A4  @delay_ms1
+0003CA  siren
+0003EC  Add_password_number
+000410  erase_passwords
+000430  compare_passwords
+000490  ReLock
+0004A2  keyboardAcq
+000528  @goto10831
+00058A  @delay_us1
+0005A6  @GETCH_BIU_1
+0005E0  @PSTRINGCN_641
+00060A  compareRFID
+000686  @cinit1
+000686  MAIN
+0006C4  @cinit2
+
+Project Directory:
+    C:\Users\Fco Erick\OneDrive\Área de Trabalho\locker\
+
+Project Files:
+    locker.c                                                [18-jun-23 11:04  CRC=33FFE61D]
+    ..\..\..\..\..\Program Files (x86)\PICC\Devices\18F4550.h [21-jun-13 16:05  CRC=A157EDDE]
+
+Source signature=76AFC1D9
+
+Units:
+    locker (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   locker.xsym
+    Errors:      locker.err
+    Ext Symbols: locker.esym
+    INHX32:      locker.hex
+    Symbols:     locker.sym
+    List:        locker.lst
+    Debug/COFF:  locker.cof
+    Project:     locker.ccspjt
+    Call Tree:   locker.tre
+    Statistics:  locker.STA

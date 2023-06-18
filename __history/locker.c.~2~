@@ -1,0 +1,322 @@
+// Aluno: Pedro Victor Silva Rocha
+// Professor: Fábio Timbó
+// Microcontrolador: teclado com senha
+
+#define COL1   pin_b3 //
+#define COL2   pin_b2
+#define COL3   pin_b1
+#define COL4   pin_b0
+//Linhas
+#define LIN1   pin_b7
+#define LIN2   pin_b6
+#define LIN3   pin_b5
+#define LIN4   pin_b4
+#include <18F4550.h>
+
+#byte trisb=0xf93
+#byte port_b = 0xF81 //Endereço da porta b
+
+#fuses HS, NOWDT, PUT, BROWNOUT, NOLVP, CPUDIV1,PLL5, WDT128 //Configuração dos fusíveis
+#use delay(clock=20000000)
+#use rs232(baud=9600, xmit = PIN_C6, rcv = PIN_C7,bits=8, timeout=500 ,stop=1, ERRORS, stream = PORTC)
+#use rs232(baud=9600, xmit = PIN_C0, rcv = PIN_C1,bits=8, stop=1, ERRORS, stream = PORTB)
+
+unsigned int32 n=0;
+
+const int32 tm=3036;//ajuste tempo de varredura das teclas
+const float t_repete=40;//ajuste tempo de repetição das teclas
+
+
+   unsigned int TestPassword [] = {0, 0, 0, 0, 0, 0 , 0, 0};
+   static unsigned int password []     = {1, 2, 3, 4, 5, 6 , 7, 8};
+   unsigned int TestPasswordPosition = 0;
+   char TestRFId[] = {' ', ' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '};
+   char RFId[]   = {' ', ' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '};
+   boolean UpdateRFID = false;
+   
+   
+   boolean Unlocked = false;
+   boolean NewRFID = false;
+   char Pressed_button = ' ';
+
+
+#INT_RDA
+void SerialInterrupt(){
+   NewRFID = true;
+   fprintf(PORTB, "\n interrupted");
+   disable_interrupts (int_rda);
+}
+
+#int_timer1
+void funcao_tempo()
+{
+   static signed int32 n;
+   set_timer1(tm+get_timer1());
+   n++;
+
+
+   if (n>4) n = 0;
+
+   switch(n){
+   case 1:
+   output_low(COL1); 
+   output_high(COL2); 
+   output_high(COL3); 
+   output_high(COL4); 
+
+   if (!input(LIN1)) {Pressed_button = '1';;n=-1*(t_repete);}
+   if (!input(LIN2)) {Pressed_button = '4';n=-1*(t_repete);}
+   if (!input(LIN3)) {Pressed_button = '7';n=-1*(t_repete);}
+   if (!input(LIN4)) {Pressed_button = '*';n=-1*(t_repete);}
+   break;
+
+   case 2:
+   output_high(COL1); 
+   output_low(COL2); 
+   output_high(COL3); 
+   output_high(COL4); 
+
+   if (!input(LIN1)) {Pressed_button = '2';n=-1*(t_repete);}
+   if (!input(LIN2)) {Pressed_button = '5';n=-1*(t_repete);}
+   if (!input(LIN3)) {Pressed_button = '8';n=-1*(t_repete);}
+   if (!input(LIN4)) {Pressed_button = '0';n=-1*(t_repete);}
+   break;
+
+   case 3:
+   output_high(COL1); 
+   output_high(COL2); 
+   output_low(COL3); 
+   output_high(COL4); 
+
+   if (!input(LIN1)) {Pressed_button = '3';n=-1*(t_repete);}
+   if (!input(LIN2)) {Pressed_button = '6';n=-1*(t_repete);}
+   if (!input(LIN3)) {Pressed_button = '9';n=-1*(t_repete);}
+   if (!input(LIN4)) {Pressed_button = '#';n=-1*(t_repete);}
+   break;
+
+   case 4:
+   output_high(COL1); 
+   output_high(COL2); 
+   output_high(COL3); 
+   output_low(COL4); 
+
+   if (!input(LIN1)) {Pressed_button = 'A';n=-1*(t_repete);}
+   if (!input(LIN2)) {Pressed_button = 'B';n=-1*(t_repete);}
+   if (!input(LIN3)) {Pressed_button = 'C';n=-1*(t_repete);}
+   if (!input(LIN4)) {Pressed_button = 'D';n=-1*(t_repete);}
+   break;
+   }
+   
+}
+ void compareRFID();
+ void keyboardAcq();
+ void Add_password_number(int num);
+ boolean compare_passwords();
+ void erase_passwords();
+ void ReLock();
+ void siren(int numberofsirenblips);
+ 
+void main(){
+ set_tris_d(0b00000000);
+ set_tris_b(0b11111111);
+ port_b_pullups(true);
+ trisb=0xf0;//pinos b7 ao b4 entrada e pinos b3 ao b0 são saídas
+ enable_interrupts(GLOBAL);
+ enable_interrupts(INT_timer1); 
+ enable_interrupts (int_rda);
+ setup_timer_1(T1_INTERNAL|T1_DIV_BY_1);
+ port_b_pullups(TRUE);
+ 
+ output_high(pin_D1); //Locked
+ fprintf(PORTB, "ITS ALIIIIVE\n");
+
+
+ while(true)
+ {
+      keyboardAcq();
+      
+      if(NewRFID) {
+            if(UpdateRFID == true) {
+               siren(2);
+               delay_ms(500);
+               RFId[0] = fgetc(PORTC);
+               RFId[1] = fgetc(PORTC);
+               RFId[2] = fgetc(PORTC);
+               RFId[3] = fgetc(PORTC);
+               RFId[4] = fgetc(PORTC);
+               RFId[5] = fgetc(PORTC);
+               RFId[6] = fgetc(PORTC);
+               RFId[7] = fgetc(PORTC);
+               RFId[8] = fgetc(PORTC);
+               RFId[9] = fgetc(PORTC);
+               RFId[10] = fgetc(PORTC);
+               RFId[11] = fgetc(PORTC);         
+               UpdateRFID = false;
+               siren(5);
+               delay_ms(1000);
+            }else{
+               TestRFId[0] = fgetc(PORTC);
+               TestRFId[1] = fgetc(PORTC);
+               TestRFId[2] = fgetc(PORTC);
+               TestRFId[3] = fgetc(PORTC);
+               TestRFId[4] = fgetc(PORTC);
+               TestRFId[5] = fgetc(PORTC);
+               TestRFId[6] = fgetc(PORTC);
+               TestRFId[7] = fgetc(PORTC);
+               TestRFId[8] = fgetc(PORTC);
+               TestRFId[9] = fgetc(PORTC);
+               TestRFId[10] = fgetc(PORTC);
+               TestRFId[11] = fgetc(PORTC);
+            }  
+         
+         
+         }
+         
+         fprintf(PORTB, "\nPassword Test: %c%c %c%c %c%c %c%c %c%c %c%c\n", TestRFId[0], TestRFId[1], TestRFId[2], TestRFId[3], TestRFId[4], TestRFId[5], TestRFId[6], TestRFId[7], TestRFId[8], TestRFId[9], TestRFId[10], TestRFId[11]);
+         fprintf(PORTB, "\nOriginal Test: %c%c %c%c %c%c %c%c %c%c %c%c\n", RFId[0], RFId[1], RFId[2], RFId[3], RFId[4], RFId[5], RFId[6], RFId[7], RFId[8], RFId[9], RFId[10], RFId[11]);
+         compareRFID();
+         delay_ms(250);
+         enable_interrupts (int_rda);
+         NewRFID = false;
+         
+      }
+      
+      
+     
+     printf("Password Test: %d %d %d %d %d %d %d %d\n", TestPassword[0], TestPassword[1], TestPassword[2], TestPassword[3], TestPassword[4], TestPassword[5], TestPassword[6], TestPassword[7]);
+     printf("Password orig: %d %d %d %d %d %d %d %d\n", password[0]    , password[1]    , password[2]    , password[3]    , password[4]    , password[5]    , password[6]    , password[7]);
+     
+     fprintf(PORTB, "ID: %d\n", Number_of_int);
+      
+     
+   
+ }
+ void Add_password_number(int num){
+         TestPassword[TestPasswordPosition] = num;
+         TestPasswordPosition ++;
+         if(TestPasswordPosition > 7) TestPasswordPosition = 0;
+         siren(1);
+         
+ }
+
+boolean compare_passwords(){
+
+   boolean PasswordWrong = false;
+
+   for(int i = 0; i<8; i++){
+      if (TestPassword[i] != password[i]){  
+         PasswordWrong = true;
+      }
+   }
+
+   if(!PasswordWrong){
+      output_high(pin_D0); //Unlocked led
+      output_low(pin_D1);  //locked led
+      Unlocked = true;
+      
+      siren(2);
+   }else{
+      siren(10);
+   }
+   
+   erase_passwords();
+   return Unlocked;
+}
+
+void erase_passwords(){
+   for(int i = 0; i<8; i++) TestPassword[i] = 0; 
+   TestPasswordPosition = 0;
+}
+
+void ReLock(){
+   output_high(pin_D1); //locked led
+   output_low(pin_D0);  //Unlocked led
+   Unlocked = false;
+   siren(1);
+}
+
+void siren(int numberofsirenblips){
+   for(int i = 0;i < numberofsirenblips; i++){
+      output_high(pin_D2);
+      delay_ms(125);
+      output_low(pin_D2);   
+      delay_ms(125);
+   }
+}
+
+
+void keyboardAcq(){
+   switch(Pressed_button){
+      case '1':
+         Add_password_number(1);
+         break;
+      case '2':
+         Add_password_number(2);
+         break;
+      case '3':
+         Add_password_number(3);
+         break;
+      case '4':
+         Add_password_number(4);
+         break;
+      case '5':
+         Add_password_number(5);
+         break;
+      case '6':
+         Add_password_number(6);
+         break;
+      case '7':
+         Add_password_number(7);
+         break;
+      case '8':
+         Add_password_number(8);
+         break;
+      case '9':
+         Add_password_number(9);
+         break;
+      case '0':
+         Add_password_number(0);
+         break;
+      case '#':
+         compare_passwords();
+         break;
+      case '*':
+         erase_passwords();
+         ReLock();
+         break;
+      case 'A':
+         UpdateRFID = true;
+         fprintf(PORTB, "\n Pressed");
+         break;
+         }
+     
+     Pressed_button = ' ';
+}
+
+void compareRFID(){
+
+   boolean PasswordWrong = false;
+
+   for(int i = 4; i<10; i++){
+      if (TestRFId[i] != RFId[i]){  
+         PasswordWrong = true;
+      }
+   }
+
+   if(!PasswordWrong){
+      output_high(pin_D0); //Unlocked led
+      output_low(pin_D1);  //locked led
+      Unlocked = true;
+      siren(2);
+      
+      delay_ms(3000);
+      ReLock();
+   }
+   
+   for(int j = 0; j<12; j++){
+      TestRFId[j] = 0;
+   }
+
+}
+
+
